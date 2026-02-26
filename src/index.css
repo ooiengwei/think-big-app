@@ -4,12 +4,31 @@
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  color: #191923;
+  color: #0A0F1E;
   background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: #0A0F1E;
+  }
+  .print\:hidden {
+    display: none !important;
   }
 }

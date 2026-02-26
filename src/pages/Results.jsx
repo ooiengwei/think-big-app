@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { Share2, Download, Save, ArrowRight, Loader2, CheckCircle, FileText } from 'lucide-react'
+import { Share2, Download, Save, ArrowRight, Loader2, CheckCircle, FileText, TrendingUp, AlertTriangle, Clock } from 'lucide-react'
 import DomainRadarChart from '../components/DomainRadarChart'
 import AuthModal from '../components/AuthModal'
 import { getBandColor } from '../lib/scoring'
@@ -141,20 +141,26 @@ export default function Results() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Loader2 size={32} className="animate-spin text-primary" />
+      <div className="min-h-screen flex items-center justify-center bg-[#F0F8FF]">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 size={32} className="animate-spin text-[#00AEEF]" />
+          <p className="text-sm text-gray-500">Loading your results...</p>
+        </div>
       </div>
     )
   }
 
   if (!scores) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 px-4">
-        <h2 className="text-2xl font-bold text-dark">No Results Found</h2>
-        <p className="text-gray-500">Take the assessment first to see your results.</p>
+      <div className="min-h-screen flex flex-col items-center justify-center gap-5 px-4 bg-[#F0F8FF]">
+        <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center">
+          <FileText size={28} className="text-gray-400" />
+        </div>
+        <h2 className="text-2xl font-extrabold text-[#0A0F1E]">No Results Found</h2>
+        <p className="text-gray-500 text-center max-w-sm">Take the assessment first to see your results.</p>
         <Link
           to="/assessment"
-          className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-800"
+          className="inline-flex items-center gap-2 bg-[#00AEEF] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#0097D0] transition-all shadow-sm"
         >
           Start Assessment <ArrowRight size={18} />
         </Link>
@@ -163,32 +169,39 @@ export default function Results() {
   }
 
   return (
-    <div className="min-h-screen bg-light">
-      <div ref={resultsRef} className="max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-[#F0F8FF]">
+      <div ref={resultsRef} className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
+
         {/* Composite Score */}
-        <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center mb-8">
-          <h1 className="text-2xl font-bold text-dark mb-2">Your Think Big Score</h1>
-          <div className="relative inline-flex items-center justify-center w-40 h-40 my-4">
-            <svg className="w-full h-full" viewBox="0 0 120 120">
-              <circle cx="60" cy="60" r="52" fill="none" stroke="#e5e7eb" strokeWidth="8" />
+        <div className="bg-white rounded-2xl p-8 sm:p-10 border border-gray-100 shadow-sm text-center mb-6 animate-fade-in">
+          <p className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-2">Your Composite Score</p>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E] mb-6">Think Big Life Score</h1>
+
+          {/* Score Ring — 160px */}
+          <div className="relative inline-flex items-center justify-center w-40 h-40 sm:w-44 sm:h-44 my-2">
+            <svg className="w-full h-full" viewBox="0 0 160 160">
+              <circle cx="80" cy="80" r="68" fill="none" stroke="#f1f5f9" strokeWidth="10" />
               <circle
-                cx="60" cy="60" r="52"
+                cx="80" cy="80" r="68"
                 fill="none"
                 stroke={getBandColor(scores.compositeBand)}
-                strokeWidth="8"
-                strokeDasharray={`${(scores.composite / 100) * 327} 327`}
+                strokeWidth="10"
+                strokeDasharray={`${(scores.composite / 100) * 2 * Math.PI * 68} ${2 * Math.PI * 68}`}
                 strokeLinecap="round"
-                transform="rotate(-90 60 60)"
+                transform="rotate(-90 80 80)"
+                className="transition-all duration-1000"
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-3xl font-bold text-dark">{Math.round(scores.composite)}</span>
-              <span className="text-xs text-gray-500">/ 100</span>
+              <span className="text-4xl sm:text-5xl font-extrabold text-[#0A0F1E]">{Math.round(scores.composite)}</span>
+              <span className="text-sm text-gray-400 -mt-1">/ 100</span>
             </div>
           </div>
-          <div className="mb-4">
+
+          {/* Band label */}
+          <div className="mt-4 mb-6">
             <span
-              className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold text-white"
+              className="inline-block px-5 py-2 rounded-full text-base font-bold text-white shadow-sm"
               style={{ backgroundColor: getBandColor(scores.compositeBand) }}
             >
               {scores.compositeBand}
@@ -198,76 +211,79 @@ export default function Results() {
           {/* View Full Report CTA */}
           <Link
             to={assessmentId ? `/report/${assessmentId}` : '/report'}
-            className="mt-6 flex items-center justify-center gap-2 w-full max-w-xs mx-auto bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-800 transition"
+            className="flex items-center justify-center gap-2 w-full bg-[#00AEEF] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#0097D0] transition-all duration-200 shadow-sm hover:shadow-md"
           >
             <FileText size={18} />
             View Full Coaching Report
           </Link>
 
           {/* Action buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mt-3">
+          <div className="flex flex-wrap justify-center gap-3 mt-4">
             <button
               onClick={handleShare}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"
+              className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-[#0A0F1E] transition-colors"
             >
-              {copied ? <CheckCircle size={16} className="text-green-500" /> : <Share2 size={16} />}
-              {copied ? 'Link Copied!' : 'Share Results'}
+              {copied ? <CheckCircle size={15} className="text-emerald-500" /> : <Share2 size={15} />}
+              {copied ? 'Copied!' : 'Share'}
             </button>
             <button
               onClick={() => setShowAuth(true)}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"
+              className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium text-gray-500 hover:bg-gray-50 hover:text-[#0A0F1E] transition-colors"
             >
-              <Save size={16} />
-              Save Results
+              <Save size={15} />
+              Save
             </button>
           </div>
         </div>
 
         {/* Radar Chart */}
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm mb-8">
-          <h2 className="text-lg font-semibold text-dark mb-4 text-center">Domain Overview</h2>
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm mb-6">
+          <h2 className="text-lg font-bold text-[#0A0F1E] mb-1 text-center">Domain Overview</h2>
+          <p className="text-sm text-gray-400 text-center mb-4">Your performance across all 6 life domains</p>
           <DomainRadarChart scores={scores} size={380} />
         </div>
 
         {/* Domain Cards */}
-        <div className="grid sm:grid-cols-2 gap-4 mb-8">
-          {Object.entries(scores.domains).map(([key, data]) => (
-            <div key={key} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-dark">{domainLabels[key]}</h3>
-                <span
-                  className="text-xs font-semibold px-2.5 py-1 rounded-full text-white"
-                  style={{ backgroundColor: getBandColor(data.band) }}
-                >
-                  {data.band}
-                </span>
+        <div className="grid sm:grid-cols-2 gap-4 mb-6">
+          {Object.entries(scores.domains).map(([key, data]) => {
+            const bandColor = getBandColor(data.band)
+            return (
+              <div key={key} className="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="font-bold text-[#0A0F1E] text-sm">{domainLabels[key]}</h3>
+                  <span
+                    className="text-xs font-semibold px-2.5 py-1 rounded-full text-white"
+                    style={{ backgroundColor: bandColor }}
+                  >
+                    {data.band}
+                  </span>
+                </div>
+
+                {/* Score bar with number */}
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="flex-1 bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                    <div
+                      className="h-full rounded-full transition-all duration-700"
+                      style={{ width: `${data.score}%`, backgroundColor: bandColor }}
+                    />
+                  </div>
+                  <span className="text-lg font-extrabold text-[#0A0F1E] w-8 text-right">{Math.round(data.score)}</span>
+                </div>
+
+                <p className="text-xs text-gray-500 leading-relaxed">{domainDescriptions[key]}</p>
+                {data.mbtiType && (
+                  <div className="mt-3 inline-flex items-center gap-1.5 bg-[#00AEEF]/5 border border-[#00AEEF]/20 rounded-lg px-2.5 py-1">
+                    <span className="text-xs font-mono font-bold text-[#00AEEF]">{data.mbtiType}</span>
+                  </div>
+                )}
               </div>
-              <div className="flex items-end gap-2 mb-2">
-                <span className="text-3xl font-bold text-dark">{Math.round(data.score)}</span>
-                <span className="text-sm text-gray-400 mb-1">/ 100</span>
-              </div>
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-3">
-                <div
-                  className="h-2 rounded-full transition-all"
-                  style={{
-                    width: `${data.score}%`,
-                    backgroundColor: getBandColor(data.band),
-                  }}
-                />
-              </div>
-              <p className="text-xs text-gray-500">{domainDescriptions[key]}</p>
-              {data.mbtiType && (
-                <p className="mt-2 text-sm font-mono font-semibold text-accent">
-                  Type: {data.mbtiType}
-                </p>
-              )}
-            </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Insights */}
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm mb-8">
-          <h2 className="text-lg font-semibold text-dark mb-4">Quick Insights</h2>
+        <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm mb-6">
+          <h2 className="text-lg font-bold text-[#0A0F1E] mb-5">Quick Insights</h2>
           <div className="space-y-3">
             {(() => {
               const sorted = Object.entries(scores.domains).sort((a, b) => b[1].score - a[1].score)
@@ -275,25 +291,32 @@ export default function Results() {
               const weakest = sorted[sorted.length - 1]
               return (
                 <>
-                  <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
-                    <div className="w-2 h-2 mt-1.5 rounded-full bg-green-500 flex-shrink-0" />
-                    <p className="text-sm text-gray-700">
-                      <strong>Strongest domain:</strong> {domainLabels[strongest[0]]} at{' '}
-                      {Math.round(strongest[1].score)} — keep building on this foundation.
-                    </p>
+                  <div className="flex items-start gap-4 p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                    <div className="w-1.5 rounded-full bg-emerald-500 flex-shrink-0 self-stretch" />
+                    <div>
+                      <p className="text-sm font-semibold text-emerald-800 mb-0.5">Strongest Domain</p>
+                      <p className="text-sm text-emerald-700">
+                        {domainLabels[strongest[0]]} at {Math.round(strongest[1].score)} &mdash; keep building on this foundation.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3 p-3 bg-amber-50 rounded-lg">
-                    <div className="w-2 h-2 mt-1.5 rounded-full bg-amber-500 flex-shrink-0" />
-                    <p className="text-sm text-gray-700">
-                      <strong>Growth opportunity:</strong> {domainLabels[weakest[0]]} at{' '}
-                      {Math.round(weakest[1].score)} — small improvements here will raise your composite score.
-                    </p>
+                  <div className="flex items-start gap-4 p-4 bg-amber-50 rounded-xl border border-amber-100">
+                    <div className="w-1.5 rounded-full bg-amber-500 flex-shrink-0 self-stretch" />
+                    <div>
+                      <p className="text-sm font-semibold text-amber-800 mb-0.5">Growth Opportunity</p>
+                      <p className="text-sm text-amber-700">
+                        {domainLabels[weakest[0]]} at {Math.round(weakest[1].score)} &mdash; small improvements here will raise your composite score.
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
-                    <div className="w-2 h-2 mt-1.5 rounded-full bg-blue-500 flex-shrink-0" />
-                    <p className="text-sm text-gray-700">
-                      <strong>Re-evaluate in 90 days</strong> to track your growth and see how your scores evolve.
-                    </p>
+                  <div className="flex items-start gap-4 p-4 bg-sky-50 rounded-xl border border-sky-100">
+                    <div className="w-1.5 rounded-full bg-[#00AEEF] flex-shrink-0 self-stretch" />
+                    <div>
+                      <p className="text-sm font-semibold text-sky-800 mb-0.5">Track Your Growth</p>
+                      <p className="text-sm text-sky-700">
+                        Re-evaluate in 90 days to track your growth and see how your scores evolve.
+                      </p>
+                    </div>
                   </div>
                 </>
               )
@@ -305,7 +328,7 @@ export default function Results() {
         <div className="text-center pb-8">
           <Link
             to="/dashboard"
-            className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-800"
+            className="inline-flex items-center gap-2 bg-[#0A0F1E] text-white px-6 py-3 rounded-xl font-semibold hover:bg-gray-800 transition-all duration-200 shadow-sm"
           >
             Go to Dashboard <ArrowRight size={18} />
           </Link>
