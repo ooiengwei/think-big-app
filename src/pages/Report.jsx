@@ -89,7 +89,7 @@ function getDomainActions(key, score) {
   const actions = {
     ikigai: {
       Drifting:    ['Write down 3 things you enjoyed before you worried about money', 'Ask 5 people who know you well: "What do you think I was made for?"', 'Block 1 hour weekly to do something purely for love of it'],
-      Awakening:   ['Map your four Ikigai circles on paper — be honest about what's missing', 'Identify one small way to bring more mission into your current work', 'Read Frankl's "Man's Search for Meaning" — it will clarify your why'],
+      Awakening:   ["Map your four Ikigai circles on paper — be honest about what's missing", "Identify one small way to bring more mission into your current work", "Read Frankl's Man's Search for Meaning — it will clarify your why"],
       Aligned:     ['Articulate your personal mission statement in one sentence', 'Audit your weekly calendar — does it reflect your Ikigai priorities?', 'Find one person living your ideal Ikigai overlap and study their path'],
       Flourishing: ['Document your Ikigai story — it will crystallise and protect it', 'Mentor someone at an earlier stage — teaching deepens your own clarity', 'Review quarterly: is your Ikigai evolving, or becoming rigid?'],
       Integrated:  ['Write a legacy statement — what will this life have meant?', 'Create a system to transmit your Ikigai insights to others', 'Continue questioning — integration without curiosity becomes dogma'],
@@ -102,30 +102,30 @@ function getDomainActions(key, score) {
       Integrated:  ['Document your personality journey for someone starting theirs', 'Explore how your type shows up differently under stress and name your tells', 'Experiment with flexing your non-dominant functions in safe, low-stakes contexts'],
     },
     '16p': {
-      Drifting:    ['Complete the official 16Personalities test at 16personalities.com', 'Read your full profile — notice what resonates and what doesn't', 'Discuss your type with one trusted person who knows you well'],
-      Awakening:   ['Revisit your test results after 3 months — type clarity improves with experience', 'Research your type's typical career and relationship patterns', 'Notice when you act against your type — what is driving that?'],
-      Aligned:     ['Deep-read your type's cognitive functions (not just the surface description)', 'Find 2–3 well-known people of your type and study how they operate', 'Identify the type you most frequently misunderstand — it's usually your opposite'],
+      Drifting:    ["Complete the official 16Personalities test at 16personalities.com", "Read your full profile — notice what resonates and what doesn't", "Discuss your type with one trusted person who knows you well"],
+      Awakening:   ["Revisit your test results after 3 months — type clarity improves with experience", "Research your type's typical career and relationship patterns", "Notice when you act against your type — what is driving that?"],
+      Aligned:     ["Deep-read your type's cognitive functions (not just the surface description)", "Find 2-3 well-known people of your type and study how they operate", "Identify the type you most frequently misunderstand — it's usually your opposite"],
       Flourishing: ['Study type pairings in your closest relationships — it explains a lot', 'Explore how your identity dimension (A/T) affects your resilience under pressure', 'Mentor someone in using type knowledge practically'],
       Integrated:  ['Explore the cognitive stack of your type at a functional depth', 'Practice deliberately using your inferior function as a growth edge', 'Create a decision filter based on your type to reduce cognitive load'],
     },
     decision: {
-      Drifting:    ['Before your next decision, write down: What am I trying to achieve?', 'Read Annie Duke's "Thinking in Bets" — it will reframe how you see choices', 'Keep a decision journal: one entry per week, reflecting on a recent choice'],
+      Drifting:    ["Before your next decision, write down: What am I trying to achieve?", "Read Annie Duke's Thinking in Bets — it will reframe how you see choices", "Keep a decision journal: one entry per week, reflecting on a recent choice"],
       Awakening:   ['Adopt a simple 3-step decision process: Define → Explore options → Decide with a date', 'Practice separating outcome from decision quality in your reviews', 'Identify your top 3 decision biases and post them somewhere visible'],
       Aligned:     ['Create a personal decision checklist for high-stakes choices', 'Review 3 past decisions — what would you do differently, and why?', 'Deliberately seek out people who will challenge your reasoning, not confirm it'],
       Flourishing: ['Build a decision log and review it quarterly for patterns', 'Identify one systematic bias still showing up and design a specific counter-measure', 'Teach your decision process to someone — teaching is the deepest test'],
       Integrated:  ['Formalise your decision framework as a written document', 'Apply pre-mortem thinking to every major decision as standard practice', 'Mentor others in decision quality — your discipline is teachable'],
     },
     financial: {
-      Drifting:    ['Calculate your current net worth — assets minus liabilities — right now', 'Read "The Psychology of Money" by Morgan Housel (short, life-changing)', 'Identify one financial decision you've been avoiding — make it this week'],
+      Drifting:    ["Calculate your current net worth — assets minus liabilities — right now", "Read The Psychology of Money by Morgan Housel (short, life-changing)", "Identify one financial decision you've been avoiding — make it this week"],
       Awakening:   ['Set up automatic savings of at least 10% of income', 'Write down your 5 most common financial biases (loss aversion, FOMO, etc.)', 'Track every spending decision for 30 days without judging — just observing'],
       Aligned:     ['Write a personal investment policy statement (IPS) — 1 page is enough', 'Stress-test your portfolio: if markets fell 40%, would your plan hold?', 'Review your financial plan annually, not daily'],
-      Flourishing: ['Define your "enough" number and your timeline explicitly', 'Audit whether your financial behaviour matches your stated values', 'Teach one young person the foundational financial principles you wish you'd known'],
+      Flourishing: ["Define your enough number and your timeline explicitly", "Audit whether your financial behaviour matches your stated values", "Teach one young person the foundational financial principles you wish you'd known"],
       Integrated:  ['Document your financial philosophy for the next generation', 'Review whether your wealth is aligned with your deepest values', 'Consider legacy: what financial decisions will echo beyond your lifetime?'],
     },
     change: {
-      Drifting:    ['Name out loud one thing that needs to end in your life — just naming it starts the process', 'Read "Transitions" by William Bridges — it will name what you're experiencing', 'Find one person who has navigated a similar transition successfully and ask them about it'],
-      Awakening:   ['Write a letter to your old self acknowledging what you're leaving behind', 'Give yourself permission to be uncertain — the neutral zone is not failure', 'Identify one small action that moves toward the new beginning, even a tiny one'],
-      Aligned:     ['Create a 90-day transition roadmap — what needs to happen, in what order?', 'Build a support system intentionally — who helps you hold the vision when you can't?', 'Develop a daily practice that grounds you during turbulent change (journaling, meditation, exercise)'],
+      Drifting:    ["Name out loud one thing that needs to end in your life — just naming it starts the process", "Read Transitions by William Bridges — it will name what you're experiencing", "Find one person who has navigated a similar transition successfully and ask them about it"],
+      Awakening:   ["Write a letter to your old self acknowledging what you're leaving behind", "Give yourself permission to be uncertain — the neutral zone is not failure", "Identify one small action that moves toward the new beginning, even a tiny one"],
+      Aligned:     ["Create a 90-day transition roadmap — what needs to happen, in what order?", "Build a support system intentionally — who helps you hold the vision when you can't?", "Develop a daily practice that grounds you during turbulent change (journaling, meditation, exercise)"],
       Flourishing: ['Document your transition story — it will help others navigating similar terrain', 'Identify your resilience anchors — what keeps you steady when change is hard?', 'Develop a protocol for how you handle setbacks — a deliberate process, not just reaction'],
       Integrated:  ['Build change capacity in others — your adaptability is a teachable skill', 'Review whether your change orientation is serving or overriding — some things deserve stability', 'Create a personal manifesto for how you navigate life transitions'],
     },
@@ -379,7 +379,7 @@ export default function Report() {
                 )}
                 <p className="text-sm text-gray-600 leading-relaxed">
                   {mbtiDesc.base?.startsWith('I')
-                    ? 'You process the world through deep reflection before acting. Your inner world is rich and detailed — honour it, but don\'t let it become an excuse to avoid engagement.'
+                    ? "You process the world through deep reflection before acting. Your inner world is rich and detailed — honour it, but don't let it become an excuse to avoid engagement."
                     : 'You process the world through engagement and action. Your energy flows outward — harness it, but build in regular reflection to avoid losing depth to momentum.'}
                 </p>
               </div>
