@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { Share2, Download, Save, ArrowRight, Loader2, CheckCircle } from 'lucide-react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
+import { Share2, Download, Save, ArrowRight, Loader2, CheckCircle, FileText } from 'lucide-react'
 import DomainRadarChart from '../components/DomainRadarChart'
 import AuthModal from '../components/AuthModal'
 import { getBandColor } from '../lib/scoring'
@@ -182,8 +182,17 @@ export default function Results() {
             </span>
           </div>
 
+          {/* View Full Report CTA */}
+          <Link
+            to={assessmentId ? `/report/${assessmentId}` : '/report'}
+            className="mt-6 flex items-center justify-center gap-2 w-full max-w-xs mx-auto bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-800 transition"
+          >
+            <FileText size={18} />
+            View Full Coaching Report
+          </Link>
+
           {/* Action buttons */}
-          <div className="flex flex-wrap justify-center gap-3 mt-6">
+          <div className="flex flex-wrap justify-center gap-3 mt-3">
             <button
               onClick={handleShare}
               className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"
@@ -192,15 +201,8 @@ export default function Results() {
               {copied ? 'Link Copied!' : 'Share Results'}
             </button>
             <button
-              onClick={handleDownloadPDF}
-              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"
-            >
-              <Download size={16} />
-              Download PDF
-            </button>
-            <button
               onClick={() => setShowAuth(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium hover:bg-red-800"
+              className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50"
             >
               <Save size={16} />
               Save Results
