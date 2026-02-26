@@ -117,12 +117,25 @@ export default function Results() {
 
   async function handleAuthSuccess(user) {
     setShowAuth(false)
-    if (assessmentId && user) {
-      // Link guest assessment to user
+    if (!user) return
+
+    const sessionId = localStorage.getItem('thinkbig_session_id')
+
+    // Link this specific assessment if we have its ID
+    if (assessmentId) {
       await supabase
         .from('assessments')
         .update({ user_id: user.id })
         .eq('id', assessmentId)
+    }
+
+    // Also link ALL guest assessments from this browser session
+    if (sessionId) {
+      await supabase
+        .from('assessments')
+        .update({ user_id: user.id })
+        .eq('session_id', sessionId)
+        .is('user_id', null)
     }
   }
 

@@ -31,6 +31,26 @@ export default function Dashboard() {
     const { data: { user } } = await supabase.auth.getUser()
     setUser(user)
     if (user) {
+      // On every login, claim any guest assessments from this browser
+      const sessionId = localStorage.getItem('thinkbig_session_id')
+      const lastAssessmentId = localStorage.getItem('thinkbig_latest_assessment_id')
+
+      // Claim by specific assessmentId
+      if (lastAssessmentId) {
+        await supabase
+          .from('assessments')
+          .update({ user_id: user.id })
+          .eq('id', lastAssessmentId)
+          .is('user_id', null)
+      }
+      // Claim all assessments from this session
+      if (sessionId) {
+        await supabase
+          .from('assessments')
+          .update({ user_id: user.id })
+          .eq('session_id', sessionId)
+          .is('user_id', null)
+      }
       await loadAssessments(user.id)
     } else {
       setLoading(false)
@@ -40,6 +60,7 @@ export default function Dashboard() {
   async function loadAssessments(userId) {
     setLoading(true)
     try {
+      // Query by user_id (covers confirmed + newly linked assessments)
       const { data } = await supabase
         .from('assessments')
         .select('*')
@@ -86,9 +107,19 @@ export default function Dashboard() {
     setLatestScores(null)
   }
 
-  function handleAuthSuccess(authUser) {
+  async function handleAuthSuccess(authUser) {
     setShowAuth(false)
     setUser(authUser)
+    const sessionId = localStorage.getItem('thinkbig_session_id')
+    const lastAssessmentId = localStorage.getItem('thinkbig_latest_assessment_id')
+    if (authUser) {
+      if (lastAssessmentId) {
+        await supabase.from('assessments').update({ user_id: authUser.id }).eq('id', lastAssessmentId).is('user_id', null)
+      }
+      if (sessionId) {
+        await supabase.from('assessments').update({ user_id: authUser.id }).eq('session_id', sessionId).is('user_id', null)
+      }
+    }
     loadAssessments(authUser.id)
   }
 

@@ -83,6 +83,9 @@ export default function Assessment() {
       // Clear saved answers
       localStorage.removeItem(STORAGE_KEY)
 
+      // Store assessmentId for post-signup linking
+      localStorage.setItem('thinkbig_latest_assessment_id', assessment.id)
+
       // Navigate to results
       navigate(`/results/${assessment.id}`)
     } catch (err) {
