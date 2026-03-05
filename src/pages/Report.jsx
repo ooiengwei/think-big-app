@@ -462,13 +462,13 @@ export default function Report() {
               const actions = getDomainActions(key, d.score)
 
               return (
-                <div key={key} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex">
-                  {/* Left color bar */}
-                  <div className="w-1.5 flex-shrink-0 rounded-l-2xl" style={{ backgroundColor: color }} />
+                <div key={key} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col sm:flex-row">
+                  {/* Color accent bar — top on mobile, left on desktop */}
+                  <div className="w-full h-2 sm:w-2 sm:h-auto flex-shrink-0 rounded-t-2xl sm:rounded-l-2xl sm:rounded-tr-none" style={{ backgroundColor: color }} />
 
                   <div className="flex-1 min-w-0">
                     {/* Domain header */}
-                    <div className="flex items-center gap-4 px-6 py-5 border-b border-gray-100">
+                    <div className="flex items-center gap-4 px-5 sm:px-6 py-5 border-b border-gray-100">
                       <span className="text-2xl">{meta.icon}</span>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
@@ -483,7 +483,7 @@ export default function Report() {
                       </div>
                     </div>
 
-                    <div className="px-6 py-5 space-y-4">
+                    <div className="px-5 sm:px-6 py-5 space-y-4">
                       {/* Score bar */}
                       <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
                         <div className="h-full rounded-full transition-all duration-700" style={{ width: `${d.score}%`, backgroundColor: color }} />

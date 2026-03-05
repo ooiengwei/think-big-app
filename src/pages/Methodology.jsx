@@ -90,10 +90,10 @@ export default function Methodology() {
       {/* ── Hero ──────────────────────────────────────────────────────── */}
       <section className="bg-[#0A0F1E] text-white py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-6 break-words">
             Built on Science.<br />Designed for Clarity.
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+          <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
             Every question in the Think Big assessment is grounded in peer-reviewed research and validated psychological frameworks.
           </p>
           <Link

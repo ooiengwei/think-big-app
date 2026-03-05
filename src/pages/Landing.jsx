@@ -113,7 +113,7 @@ export default function Landing() {
                 </div>
               </div>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] mb-6 tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-[3.25rem] font-extrabold leading-[1.1] mb-6 tracking-tight break-words">
                 Discover Where You<br />
                 <span className="text-blue-200">Truly Stand in Life.</span>
               </h2>

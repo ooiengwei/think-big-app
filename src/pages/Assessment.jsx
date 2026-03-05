@@ -185,13 +185,13 @@ export default function Assessment() {
 
               {q.type === 'scale' ? (
                 <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-2">
-                  <span className="text-xs text-gray-400 sm:w-28 text-center sm:text-right">Strongly Disagree</span>
-                  <div className="flex gap-2 flex-1 justify-center">
+                  <span className="hidden sm:block text-xs text-gray-400 sm:w-28 text-center sm:text-right">Strongly Disagree</span>
+                  <div className="flex gap-1.5 sm:gap-2 flex-1 justify-center">
                     {[1, 2, 3, 4, 5].map(v => (
                       <button
                         key={v}
                         onClick={() => handleAnswer(q.id, String(v))}
-                        className={`w-12 h-12 sm:w-11 sm:h-11 rounded-xl font-semibold text-sm transition-all duration-200 ${
+                        className={`w-10 h-10 sm:w-12 sm:h-12 min-w-[44px] min-h-[44px] rounded-xl font-semibold text-sm transition-all duration-200 ${
                           answers[q.id] === String(v)
                             ? 'bg-[#00AEEF] text-white scale-105 shadow-md shadow-[#00AEEF]/20'
                             : 'bg-gray-50 text-gray-500 hover:bg-[#00AEEF]/10 hover:text-[#00AEEF] border border-gray-100'
@@ -201,7 +201,7 @@ export default function Assessment() {
                       </button>
                     ))}
                   </div>
-                  <span className="text-xs text-gray-400 sm:w-28 text-center sm:text-left">Strongly Agree</span>
+                  <span className="hidden sm:block text-xs text-gray-400 sm:w-28 text-center sm:text-left">Strongly Agree</span>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

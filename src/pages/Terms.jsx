@@ -53,10 +53,10 @@ export default function Terms() {
       <section className="bg-[#0A0F1E] text-white py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
           <p className="text-[#00AEEF] text-sm font-semibold uppercase tracking-wider mb-4">Legal</p>
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold leading-[1.1] tracking-tight mb-6">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-[1.1] tracking-tight mb-6 break-words">
             Terms of Use
           </h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed mb-6">
+          <p className="text-gray-300 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-6">
             Please read these terms carefully before using Think Big.
           </p>
           <p className="text-gray-500 text-sm">Effective Date: 5 March 2025</p>
