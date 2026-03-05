@@ -16,6 +16,7 @@ export default function Layout({ children }) {
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/assessment', label: 'Assessment' },
+    { to: '/methodology', label: 'Methodology' },
     { to: '/dashboard', label: 'Dashboard' },
   ]
 
@@ -140,6 +141,9 @@ export default function Layout({ children }) {
               </Link>
               <Link to="/dashboard" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Dashboard
+              </Link>
+              <Link to="/methodology" className="text-sm text-gray-400 hover:text-white transition-colors">
+                Methodology
               </Link>
               <Link to="/" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Home

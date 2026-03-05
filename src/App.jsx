@@ -4,6 +4,7 @@ import Landing from './pages/Landing'
 import Assessment from './pages/Assessment'
 import Results from './pages/Results'
 import Report from './pages/Report'
+import Methodology from './pages/Methodology'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
 
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/report" element={<Report />} />
         <Route path="/report/:assessmentId" element={<Report />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/methodology" element={<Methodology />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </Layout>

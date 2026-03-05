@@ -228,6 +228,9 @@ export default function Landing() {
             <p className="mt-3 text-gray-500 max-w-2xl mx-auto">
               Each domain is grounded in world-class research and weighted to give you a holistic composite score.
             </p>
+            <Link to="/methodology" className="inline-block mt-4 text-sm text-[#00AEEF] hover:text-[#0097D0] font-medium transition-colors">
+              Learn about our methodology &rarr;
+            </Link>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {domains.map(d => (
