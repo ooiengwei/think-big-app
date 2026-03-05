@@ -5,6 +5,7 @@ import Assessment from './pages/Assessment'
 import Results from './pages/Results'
 import Report from './pages/Report'
 import Methodology from './pages/Methodology'
+import Terms from './pages/Terms'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
 
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/report/:assessmentId" element={<Report />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/methodology" element={<Methodology />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </Layout>

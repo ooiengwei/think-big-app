@@ -148,6 +148,9 @@ export default function Layout({ children }) {
               <Link to="/" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Home
               </Link>
+              <Link to="/terms" className="text-sm text-gray-400 hover:text-white transition-colors">
+                Terms of Use
+              </Link>
             </div>
 
             {/* Tagline + copyright */}
