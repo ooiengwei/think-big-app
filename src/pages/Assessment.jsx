@@ -24,6 +24,9 @@ export default function Assessment() {
   const totalAnswered = questions.filter(q => answers[q.id] !== undefined).length
   const progress = (totalAnswered / questions.length) * 100
 
+  const canProceed = answeredInSection === sectionQuestions.length
+  const isLastSection = currentSection === domains.length - 1
+
   // Auto-save to localStorage
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(answers))
@@ -41,9 +44,6 @@ export default function Assessment() {
     setAnswers(prev => ({ ...prev, [questionId]: value }))
     setShowUnanswered(false)
   }, [])
-
-  const canProceed = answeredInSection === sectionQuestions.length
-  const isLastSection = currentSection === domains.length - 1
 
   async function handleSubmit() {
     if (totalAnswered < questions.length) return
