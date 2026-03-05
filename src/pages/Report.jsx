@@ -190,6 +190,10 @@ export default function Report() {
   const [scores, setScores] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [])
+
   useEffect(() => { loadScores() }, [assessmentId])
 
   async function loadScores() {

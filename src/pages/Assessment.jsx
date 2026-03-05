@@ -15,6 +15,8 @@ export default function Assessment() {
     return saved ? JSON.parse(saved) : {}
   })
   const [submitting, setSubmitting] = useState(false)
+  const [sectionJustCompleted, setSectionJustCompleted] = useState(false)
+  const [showUnanswered, setShowUnanswered] = useState(false)
 
   const domain = domains[currentSection]
   const sectionQuestions = getQuestionsForDomain(domain.id)
@@ -27,8 +29,17 @@ export default function Assessment() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(answers))
   }, [answers])
 
+  useEffect(() => {
+    if (canProceed) {
+      setSectionJustCompleted(true)
+      const t = setTimeout(() => setSectionJustCompleted(false), 3000)
+      return () => clearTimeout(t)
+    }
+  }, [canProceed])
+
   const handleAnswer = useCallback((questionId, value) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }))
+    setShowUnanswered(false)
   }, [])
 
   const canProceed = answeredInSection === sectionQuestions.length
@@ -113,7 +124,12 @@ export default function Assessment() {
                 {currentSection + 1}/{domains.length}
               </span>
             </div>
-            <span className="text-sm font-semibold text-[#00AEEF]">{Math.round(progress)}%</span>
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-gray-400 hidden sm:flex items-center gap-1">
+                <span>💾</span> Auto-saved
+              </span>
+              <span className="text-sm font-semibold text-[#00AEEF]">{Math.round(progress)}%</span>
+            </div>
           </div>
 
           {/* Progress bar */}
@@ -154,6 +170,9 @@ export default function Assessment() {
       {/* Questions */}
       <div className="max-w-3xl mx-auto px-4 py-8 animate-fade-in">
         <div className="mb-8">
+          <p className="text-xs font-semibold text-[#00AEEF] uppercase tracking-wider mb-1">
+            Section {currentSection + 1} of {domains.length}
+          </p>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0A0F1E]">{domain.name}</h2>
           <p className="text-gray-500 text-sm mt-2">
             Answer all {sectionQuestions.length} questions in this section &middot; {answeredInSection}/{sectionQuestions.length} answered
@@ -164,11 +183,12 @@ export default function Assessment() {
           {sectionQuestions.map((q, idx) => (
             <div
               key={q.id}
+              data-unanswered={answers[q.id] === undefined ? "true" : "false"}
               className={`bg-white rounded-2xl p-6 shadow-sm border transition-all duration-200 ${
                 answers[q.id] !== undefined
                   ? 'border-emerald-200/80 shadow-emerald-50'
                   : 'border-gray-100 hover:border-gray-200'
-              }`}
+              } ${showUnanswered && answers[q.id] === undefined ? 'ring-2 ring-red-400 ring-offset-1' : ''}`}
             >
               <div className="flex items-start gap-3 mb-4">
                 <span className={`inline-flex items-center justify-center w-7 h-7 rounded-lg text-xs font-bold flex-shrink-0 ${
@@ -185,7 +205,7 @@ export default function Assessment() {
 
               {q.type === 'scale' ? (
                 <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-2">
-                  <span className="hidden sm:block text-xs text-gray-400 sm:w-28 text-center sm:text-right">Strongly Disagree</span>
+                  <span className="text-[10px] sm:text-xs text-gray-400 sm:w-28 text-center sm:text-right leading-tight">Strongly<br className="sm:hidden"/>Disagree</span>
                   <div className="flex gap-1.5 sm:gap-2 flex-1 justify-center">
                     {[1, 2, 3, 4, 5].map(v => (
                       <button
@@ -201,7 +221,7 @@ export default function Assessment() {
                       </button>
                     ))}
                   </div>
-                  <span className="hidden sm:block text-xs text-gray-400 sm:w-28 text-center sm:text-left">Strongly Agree</span>
+                  <span className="text-[10px] sm:text-xs text-gray-400 sm:w-28 text-center sm:text-left leading-tight">Strongly<br className="sm:hidden"/>Agree</span>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -237,10 +257,27 @@ export default function Assessment() {
           ))}
         </div>
 
+        {/* Section feedback banners */}
+        {sectionJustCompleted && (
+          <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm font-medium px-4 py-3 rounded-xl mb-4 animate-fade-in">
+            <span>✓</span>
+            <span>Section complete — you can proceed to the next section!</span>
+          </div>
+        )}
+        {showUnanswered && !canProceed && (
+          <div className="flex items-center gap-2 bg-red-50 border border-red-200 text-red-600 text-sm font-medium px-4 py-3 rounded-xl mb-4">
+            <span>⚠️</span>
+            <span>Please answer all questions above before continuing.</span>
+          </div>
+        )}
+
         {/* Navigation */}
         <div className="flex justify-between mt-10 pb-10">
           <button
-            onClick={() => setCurrentSection(Math.max(0, currentSection - 1))}
+            onClick={() => {
+              setCurrentSection(prev => Math.max(0, prev - 1))
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
             disabled={currentSection === 0}
             className="flex items-center gap-2 px-5 py-3 border-2 border-gray-200 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-50 hover:border-gray-300 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-200"
           >
@@ -268,7 +305,19 @@ export default function Assessment() {
             </button>
           ) : (
             <button
-              onClick={() => setCurrentSection(Math.min(domains.length - 1, currentSection + 1))}
+              onClick={() => {
+                if (!canProceed) {
+                  setShowUnanswered(true)
+                  setTimeout(() => {
+                    const el = document.querySelector('[data-unanswered="true"]')
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+                  }, 100)
+                  return
+                }
+                setShowUnanswered(false)
+                setCurrentSection(prev => Math.min(domains.length - 1, prev + 1))
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
               className="flex items-center gap-2 px-7 py-3 bg-[#00AEEF] text-white rounded-xl text-sm font-semibold hover:bg-[#0097D0] transition-all duration-200 shadow-sm hover:shadow-md"
             >
               Next Section

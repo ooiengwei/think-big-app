@@ -13,6 +13,11 @@ export default function Layout({ children }) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [location.pathname])
+
   const navLinks = [
     { to: '/', label: 'Home' },
     { to: '/assessment', label: 'Assessment' },

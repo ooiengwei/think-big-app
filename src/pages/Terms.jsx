@@ -95,7 +95,7 @@ export default function Terms() {
             <div className="space-y-10">
 
               {/* 1. Acceptance of Terms */}
-              <section id="acceptance-of-terms">
+              <section id="acceptance-of-terms" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   1. Acceptance of Terms
                 </h2>
@@ -105,7 +105,7 @@ export default function Terms() {
               </section>
 
               {/* 2. About the Service */}
-              <section id="about-the-service">
+              <section id="about-the-service" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   2. About the Service
                 </h2>
@@ -120,7 +120,7 @@ export default function Terms() {
               </section>
 
               {/* 3. Not a Clinical or Professional Service */}
-              <section id="not-a-clinical-or-professional-service">
+              <section id="not-a-clinical-or-professional-service" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   3. Not a Clinical or Professional Service
                 </h2>
@@ -140,7 +140,7 @@ export default function Terms() {
               </section>
 
               {/* 4. User Accounts */}
-              <section id="user-accounts">
+              <section id="user-accounts" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   4. User Accounts
                 </h2>
@@ -161,7 +161,7 @@ export default function Terms() {
               </section>
 
               {/* 5. Your Data & Privacy */}
-              <section id="your-data-and-privacy">
+              <section id="your-data-and-privacy" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   5. Your Data &amp; Privacy
                 </h2>
@@ -199,7 +199,7 @@ export default function Terms() {
               </section>
 
               {/* 6. Intellectual Property */}
-              <section id="intellectual-property">
+              <section id="intellectual-property" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   6. Intellectual Property
                 </h2>
@@ -224,7 +224,7 @@ export default function Terms() {
               </section>
 
               {/* 7. Paid Features */}
-              <section id="paid-features">
+              <section id="paid-features" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   7. Paid Features
                 </h2>
@@ -241,7 +241,7 @@ export default function Terms() {
               </section>
 
               {/* 8. Prohibited Conduct */}
-              <section id="prohibited-conduct">
+              <section id="prohibited-conduct" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   8. Prohibited Conduct
                 </h2>
@@ -258,7 +258,7 @@ export default function Terms() {
               </section>
 
               {/* 9. Disclaimers & Limitation of Liability */}
-              <section id="disclaimers-and-limitation-of-liability">
+              <section id="disclaimers-and-limitation-of-liability" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   9. Disclaimers &amp; Limitation of Liability
                 </h2>
@@ -288,7 +288,7 @@ export default function Terms() {
               </section>
 
               {/* 10. Changes to Terms */}
-              <section id="changes-to-terms">
+              <section id="changes-to-terms" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   10. Changes to Terms
                 </h2>
@@ -298,7 +298,7 @@ export default function Terms() {
               </section>
 
               {/* 11. Governing Law */}
-              <section id="governing-law">
+              <section id="governing-law" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   11. Governing Law
                 </h2>
@@ -308,7 +308,7 @@ export default function Terms() {
               </section>
 
               {/* 12. Contact */}
-              <section id="contact">
+              <section id="contact" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   12. Contact
                 </h2>

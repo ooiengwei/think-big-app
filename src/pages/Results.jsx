@@ -40,6 +40,10 @@ export default function Results() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [])
+
+  useEffect(() => {
     loadResults()
   }, [assessmentId])
 

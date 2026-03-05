@@ -184,7 +184,7 @@ export default function Landing() {
       </section>
 
       {/* ── How It Works ──────────────────────────────────────────────── */}
-      <section id="how-it-works" className="py-20 sm:py-24 bg-[#F0F8FF]">
+      <section id="how-it-works" className="scroll-mt-20 py-20 sm:py-24 bg-[#F0F8FF]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-[#00AEEF] text-sm font-semibold uppercase tracking-wider mb-3">Simple Process</p>
@@ -220,7 +220,7 @@ export default function Landing() {
       </section>
 
       {/* ── 6 Domains ─────────────────────────────────────────────────── */}
-      <section id="domains" className="py-20 sm:py-24 bg-white">
+      <section id="domains" className="scroll-mt-20 py-20 sm:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-[#00AEEF] text-sm font-semibold uppercase tracking-wider mb-3">Comprehensive Evaluation</p>

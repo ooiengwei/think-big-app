@@ -93,7 +93,7 @@ export default function Privacy() {
             <div className="space-y-10">
 
               {/* 1. Who We Are */}
-              <section id="who-we-are">
+              <section id="who-we-are" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   1. Who We Are
                 </h2>
@@ -109,7 +109,7 @@ export default function Privacy() {
               </section>
 
               {/* 2. What Data We Collect */}
-              <section id="what-data-we-collect">
+              <section id="what-data-we-collect" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   2. What Data We Collect
                 </h2>
@@ -139,7 +139,7 @@ export default function Privacy() {
               </section>
 
               {/* 3. How We Use Your Data */}
-              <section id="how-we-use-your-data">
+              <section id="how-we-use-your-data" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   3. How We Use Your Data
                 </h2>
@@ -161,7 +161,7 @@ export default function Privacy() {
               </section>
 
               {/* 4. Data Storage & Security */}
-              <section id="data-storage-and-security">
+              <section id="data-storage-and-security" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   4. Data Storage &amp; Security
                 </h2>
@@ -184,7 +184,7 @@ export default function Privacy() {
               </section>
 
               {/* 5. Cookies & Tracking */}
-              <section id="cookies-and-tracking">
+              <section id="cookies-and-tracking" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   5. Cookies &amp; Tracking
                 </h2>
@@ -200,7 +200,7 @@ export default function Privacy() {
               </section>
 
               {/* 6. Third-Party Sub-Processors */}
-              <section id="third-party-sub-processors">
+              <section id="third-party-sub-processors" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   6. Third-Party Sub-Processors
                 </h2>
@@ -252,7 +252,7 @@ export default function Privacy() {
               </section>
 
               {/* 7. Data Retention */}
-              <section id="data-retention">
+              <section id="data-retention" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   7. Data Retention
                 </h2>
@@ -272,7 +272,7 @@ export default function Privacy() {
               </section>
 
               {/* 8. Your Rights (PDPA Malaysia) */}
-              <section id="your-rights-pdpa-malaysia">
+              <section id="your-rights-pdpa-malaysia" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   8. Your Rights (PDPA Malaysia)
                 </h2>
@@ -310,7 +310,7 @@ export default function Privacy() {
               </section>
 
               {/* 9. Children's Privacy */}
-              <section id="childrens-privacy">
+              <section id="childrens-privacy" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   9. Children&apos;s Privacy
                 </h2>
@@ -320,7 +320,7 @@ export default function Privacy() {
               </section>
 
               {/* 10. Changes to This Policy */}
-              <section id="changes-to-this-policy">
+              <section id="changes-to-this-policy" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   10. Changes to This Policy
                 </h2>
@@ -335,7 +335,7 @@ export default function Privacy() {
               </section>
 
               {/* 11. Contact & Data Controller */}
-              <section id="contact-and-data-controller">
+              <section id="contact-and-data-controller" className="scroll-mt-24">
                 <h2 className="text-[#0A0F1E] font-bold text-xl mb-3 border-l-4 border-[#00AEEF] pl-4">
                   11. Contact &amp; Data Controller
                 </h2>
