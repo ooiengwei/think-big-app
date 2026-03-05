@@ -193,6 +193,7 @@ export default function Terms() {
                   <div>
                     <h3 className="font-bold text-[#0A0F1E] mb-2">5.5 Governing Privacy Law</h3>
                     <p>This App is operated from Malaysia. We comply with the Personal Data Protection Act 2010 (PDPA) of Malaysia.</p>
+                    <p className="mt-3">For full details on how we handle your data, see our <Link to="/privacy" className="text-[#00AEEF] underline hover:text-[#0097D0]">Privacy Policy</Link>.</p>
                   </div>
                 </div>
               </section>
