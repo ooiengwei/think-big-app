@@ -30,11 +30,50 @@ export default function Results() {
   const [loading, setLoading] = useState(true)
   const [showAuth, setShowAuth] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [user, setUser] = useState(null)
+  const [pendingReportRedirect, setPendingReportRedirect] = useState(false)
+  const [reportClicked, setReportClicked] = useState(false)
+  const [showNudge, setShowNudge] = useState(false)
+  const [nudgeDismissed, setNudgeDismissed] = useState(false)
+  const [showStickyBar, setShowStickyBar] = useState(false)
   const resultsRef = useRef(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     loadResults()
   }, [assessmentId])
+
+  // Check auth state
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null)
+    })
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null)
+    })
+    return () => subscription.unsubscribe()
+  }, [])
+
+  // Timed nudge modal — 15s after results load
+  useEffect(() => {
+    if (!scores) return
+    const timer = setTimeout(() => {
+      if (!reportClicked && !nudgeDismissed) {
+        setShowNudge(true)
+      }
+    }, 15000)
+    return () => clearTimeout(timer)
+  }, [scores, reportClicked, nudgeDismissed])
+
+  // Sticky bottom bar on scroll
+  useEffect(() => {
+    const onScroll = () => {
+      if (window.scrollY > 200 && !reportClicked) setShowStickyBar(true)
+      else if (window.scrollY <= 200) setShowStickyBar(false)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [reportClicked])
 
   async function loadResults() {
     setLoading(true)
@@ -115,9 +154,9 @@ export default function Results() {
     }
   }
 
-  async function handleAuthSuccess(user) {
+  async function handleAuthSuccess(authedUser) {
     setShowAuth(false)
-    if (!user) return
+    if (!authedUser) return
 
     const sessionId = localStorage.getItem('thinkbig_session_id')
 
@@ -125,7 +164,7 @@ export default function Results() {
     if (assessmentId) {
       await supabase
         .from('assessments')
-        .update({ user_id: user.id })
+        .update({ user_id: authedUser.id })
         .eq('id', assessmentId)
     }
 
@@ -133,10 +172,24 @@ export default function Results() {
     if (sessionId) {
       await supabase
         .from('assessments')
-        .update({ user_id: user.id })
+        .update({ user_id: authedUser.id })
         .eq('session_id', sessionId)
         .is('user_id', null)
     }
+
+    // Redirect to report if user signed up via report CTA
+    if (pendingReportRedirect) {
+      setPendingReportRedirect(false)
+      setReportClicked(true)
+      navigate(assessmentId ? `/report/${assessmentId}` : '/report')
+    }
+  }
+
+  const reportPath = assessmentId ? `/report/${assessmentId}` : '/report'
+
+  function handleReportClick() {
+    setReportClicked(true)
+    setShowStickyBar(false)
   }
 
   if (loading) {
@@ -169,7 +222,7 @@ export default function Results() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F0F8FF]">
+    <div className={`min-h-screen bg-[#F0F8FF] ${showStickyBar && !reportClicked && !user ? 'pb-16' : ''}`}>
       <div ref={resultsRef} className="max-w-4xl mx-auto px-4 py-8 sm:py-12">
 
         {/* Composite Score */}
@@ -210,11 +263,12 @@ export default function Results() {
 
           {/* View Full Report CTA */}
           <Link
-            to={assessmentId ? `/report/${assessmentId}` : '/report'}
+            to={reportPath}
+            onClick={handleReportClick}
             className="flex items-center justify-center gap-2 w-full bg-[#00AEEF] text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-[#0097D0] transition-all duration-200 shadow-sm hover:shadow-md"
           >
             <FileText size={18} />
-            View Full Coaching Report
+            See My Coaching Plan →
           </Link>
 
           {/* Action buttons */}
@@ -281,6 +335,67 @@ export default function Results() {
           })}
         </div>
 
+        {/* ── Coaching Report Conversion Card ── */}
+        <div className="bg-gradient-to-br from-[#0A0F1E] to-[#0A1E3D] rounded-2xl p-7 sm:p-10 mb-6 text-white relative overflow-hidden">
+          {/* decorative circle bg */}
+          <div className="absolute -top-10 -right-10 w-48 h-48 bg-[#00AEEF]/10 rounded-full" />
+          <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#00AEEF]/5 rounded-full" />
+
+          <div className="relative">
+            {/* Header */}
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-2xl">🎯</span>
+              <span className="text-[#00AEEF] text-sm font-semibold uppercase tracking-wider">Your coaching report is ready</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-extrabold mb-2">Get your personalised action plan</h2>
+            <p className="text-blue-200 text-sm sm:text-base mb-6 max-w-lg">
+              Based on your scores, we have prepared a detailed coaching report with domain insights, root-cause analysis, and a 90-day growth plan — tailored to you.
+            </p>
+
+            {/* What's inside preview */}
+            <div className="grid sm:grid-cols-3 gap-3 mb-7">
+              {[
+                { icon: '📊', title: '6 Domain Insights', desc: 'Deep dive into each area of your life' },
+                { icon: '❓', title: 'Coaching Questions', desc: 'Powerful questions to reflect on' },
+                { icon: '📅', title: '90-Day Action Plan', desc: 'Specific exercises and goals to grow' },
+              ].map((item) => (
+                <div key={item.title} className="bg-white/10 rounded-xl p-4 border border-white/10">
+                  <span className="text-xl">{item.icon}</span>
+                  <p className="font-semibold text-sm mt-1">{item.title}</p>
+                  <p className="text-blue-300 text-xs mt-0.5">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA buttons */}
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button
+                onClick={() => {
+                  handleReportClick()
+                  if (user) {
+                    navigate(reportPath)
+                  } else {
+                    setPendingReportRedirect(true)
+                    setShowAuth(true)
+                  }
+                }}
+                className="flex items-center justify-center gap-2 bg-[#00AEEF] hover:bg-[#0097D0] text-white font-bold px-8 py-3.5 rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl text-base"
+                id="report-cta-main"
+              >
+                🎓 Sign Up & Get My Report
+              </button>
+              <button
+                onClick={() => { handleReportClick(); navigate(reportPath) }}
+                className="flex items-center justify-center gap-2 border border-white/30 text-white font-medium px-6 py-3.5 rounded-xl hover:bg-white/10 transition-all duration-200 text-sm"
+                id="report-cta-guest"
+              >
+                Continue as guest →
+              </button>
+            </div>
+            <p className="text-blue-300 text-xs mt-3">✓ Free forever &nbsp;·&nbsp; ✓ No credit card &nbsp;·&nbsp; ✓ Save your history</p>
+          </div>
+        </div>
+
         {/* Insights */}
         <div className="bg-white rounded-2xl p-6 sm:p-8 border border-gray-100 shadow-sm mb-6">
           <h2 className="text-lg font-bold text-[#0A0F1E] mb-5">Quick Insights</h2>
@@ -334,6 +449,49 @@ export default function Results() {
           </Link>
         </div>
       </div>
+
+      {/* Timed Nudge Modal */}
+      {showNudge && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => { setShowNudge(false); setNudgeDismissed(true) }}>
+          <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full p-7 text-center relative" onClick={e => e.stopPropagation()}>
+            <button onClick={() => { setShowNudge(false); setNudgeDismissed(true) }} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600">✕</button>
+            <div className="text-4xl mb-3">🎯</div>
+            <h3 className="text-xl font-extrabold text-[#0A0F1E] mb-2">Don't leave without your coaching report!</h3>
+            <p className="text-gray-500 text-sm mb-5">Your personalised coaching plan — with insights, questions, and a 90-day action plan — is ready and waiting.</p>
+            <button
+              onClick={() => { setShowNudge(false); setNudgeDismissed(true); setPendingReportRedirect(true); setShowAuth(true) }}
+              className="w-full bg-[#00AEEF] text-white font-bold py-3 rounded-xl hover:bg-[#0097D0] transition-all mb-3"
+            >
+              🎓 Sign Up & View Report
+            </button>
+            <button
+              onClick={() => { setShowNudge(false); setNudgeDismissed(true); handleReportClick(); navigate(reportPath) }}
+              className="w-full text-sm text-gray-400 hover:text-[#0A0F1E] transition-colors py-2"
+            >
+              Continue as guest →
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Sticky Bottom Bar */}
+      {showStickyBar && !reportClicked && !user && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0A0F1E] border-t border-[#00AEEF]/30 px-4 py-3 flex items-center justify-between gap-3 shadow-2xl">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-lg flex-shrink-0">🎯</span>
+            <p className="text-white text-sm font-medium truncate">Your coaching report is ready</p>
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <button
+              onClick={() => { setShowStickyBar(false); setPendingReportRedirect(true); setShowAuth(true) }}
+              className="bg-[#00AEEF] text-white text-sm font-bold px-4 py-2 rounded-xl hover:bg-[#0097D0] transition-all whitespace-nowrap"
+            >
+              Get Report →
+            </button>
+            <button onClick={() => setShowStickyBar(false)} className="text-gray-500 hover:text-white transition-colors p-1">✕</button>
+          </div>
+        </div>
+      )}
 
       {showAuth && (
         <AuthModal
