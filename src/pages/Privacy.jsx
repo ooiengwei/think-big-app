@@ -280,7 +280,7 @@ export default function Privacy() {
                   <p>Under the Personal Data Protection Act 2010 (PDPA) of Malaysia, you have the right to:</p>
                   <ul className="list-disc pl-5 space-y-1.5">
                     <li>Access the personal data we hold about you</li>
-                    <li>Correct inaccurate personal data</li>
+                    <li>Correct inaccurate personal data <span className="text-xs text-gray-500 ml-2">(Email corrections can be made in <Link to="/settings" className="text-[#00AEEF] hover:underline">Account Settings</Link>)</span></li>
                     <li>Request deletion of your personal data</li>
                     <li>Withdraw consent to data processing (this will require account deletion)</li>
                     <li>Lodge a complaint with the Department of Personal Data Protection (JPDP) Malaysia</li>

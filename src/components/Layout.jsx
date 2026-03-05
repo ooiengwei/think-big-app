@@ -159,6 +159,9 @@ export default function Layout({ children }) {
               <Link to="/privacy" className="text-sm text-gray-400 hover:text-white transition-colors">
                 Privacy Policy
               </Link>
+              <Link to="/settings" className="text-sm text-gray-400 hover:text-white transition-colors">
+                Settings
+              </Link>
             </div>
 
             {/* Tagline + copyright */}
