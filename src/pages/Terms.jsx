@@ -114,7 +114,7 @@ export default function Terms() {
                     Think Big is an online self-reflection and life evaluation tool. It presents a 120-question assessment across 6 domains &mdash; Ikigai, Personality, 16 Personalities, Decision Making, Financial Decision Making, and Change Direction &mdash; and generates a personalised coaching report based on your responses.
                   </p>
                   <p>
-                    The App is operated by Ooi Eng Wei, based in Malaysia.
+                    The App is operated by ITG Management Sdn. Bhd., based in Malaysia.
                   </p>
                 </div>
               </section>
@@ -188,7 +188,7 @@ export default function Terms() {
                   </div>
                   <div>
                     <h3 className="font-bold text-[#0A0F1E] mb-2">5.4 Data Retention</h3>
-                    <p>Guest session data is not permanently linked to your identity. Registered user data is retained until you request account deletion. To delete your account and all associated data, contact us at <a href="mailto:thinkbig@ooi.my" className="text-[#00AEEF] hover:underline">thinkbig@ooi.my</a>.</p>
+                    <p>Guest session data is not permanently linked to your identity. Registered user data is retained until you request account deletion. To delete your account and all associated data, contact us at <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>.</p>
                   </div>
                   <div>
                     <h3 className="font-bold text-[#0A0F1E] mb-2">5.5 Governing Privacy Law</h3>
@@ -206,7 +206,7 @@ export default function Terms() {
                 <div className="text-gray-600 leading-relaxed text-base space-y-6">
                   <div>
                     <h3 className="font-bold text-[#0A0F1E] mb-2">6.1 Our Content</h3>
-                    <p>All content in the App &mdash; including the 120 assessment questions, scoring methodology, coaching report text, domain framework structure, branding, and design &mdash; is the intellectual property of Ooi Eng Wei and is protected under applicable copyright law.</p>
+                    <p>All content in the App &mdash; including the 120 assessment questions, scoring methodology, coaching report text, domain framework structure, branding, and design &mdash; is the intellectual property of ITG Management Sdn. Bhd. and is protected under applicable copyright law.</p>
                   </div>
                   <div>
                     <h3 className="font-bold text-[#0A0F1E] mb-2">6.2 What You May Not Do</h3>
@@ -270,7 +270,7 @@ export default function Terms() {
                   <div>
                     <h3 className="font-bold text-[#0A0F1E] mb-2">9.2 Limitation of Liability</h3>
                     <div className="space-y-3">
-                      <p>To the fullest extent permitted by law, Ooi Eng Wei shall not be liable for any:</p>
+                      <p>To the fullest extent permitted by law, ITG Management Sdn. Bhd. shall not be liable for any:</p>
                       <ul className="list-disc pl-5 space-y-1.5">
                         <li>Indirect, incidental, or consequential damages arising from your use of the App</li>
                         <li>Decisions made based on assessment results</li>
@@ -318,10 +318,10 @@ export default function Terms() {
                   </p>
                   <p className="text-gray-600 text-base">
                     <span className="font-medium">Email:</span>{' '}
-                    <a href="mailto:thinkbig@ooi.my" className="text-[#00AEEF] hover:underline">thinkbig@ooi.my</a>
+                    <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>
                   </p>
                   <p className="text-gray-600 text-base">
-                    <span className="font-medium">Operated by:</span> Ooi Eng Wei, Malaysia
+                    <span className="font-medium">Operated by:</span> ITG Management Sdn. Bhd., Malaysia
                   </p>
                 </div>
               </section>

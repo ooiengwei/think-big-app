@@ -99,8 +99,8 @@ export default function Privacy() {
                 </h2>
                 <div className="text-gray-600 leading-relaxed text-base space-y-4">
                   <p>
-                    Think Big is a life evaluation and self-reflection web application operated by Ooi Eng Wei, based in Malaysia. We can be reached at{' '}
-                    <a href="mailto:thinkbig@ooi.my" className="text-[#00AEEF] hover:underline">thinkbig@ooi.my</a>.
+                    Think Big is a life evaluation and self-reflection web application operated by ITG Management Sdn. Bhd., based in Malaysia. We can be reached at{' '}
+                    <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>.
                   </p>
                   <p>
                     This Privacy Policy explains how we collect, use, store, and protect your personal data when you use the Think Big app at think-big-app.vercel.app.
@@ -265,7 +265,7 @@ export default function Privacy() {
                   </p>
                   <p>
                     To delete your account and all associated data: email{' '}
-                    <a href="mailto:thinkbig@ooi.my" className="text-[#00AEEF] hover:underline">thinkbig@ooi.my</a>{' '}
+                    <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>{' '}
                     with subject &ldquo;Data Deletion Request&rdquo;. We will process your request within 14 business days.
                   </p>
                 </div>
@@ -287,7 +287,7 @@ export default function Privacy() {
                   </ul>
                   <p>
                     To exercise any of these rights, contact us at{' '}
-                    <a href="mailto:thinkbig@ooi.my" className="text-[#00AEEF] hover:underline">thinkbig@ooi.my</a>.
+                    <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>.
                   </p>
                 </div>
               </section>
@@ -324,10 +324,10 @@ export default function Privacy() {
                 </h2>
                 <div className="bg-[#00AEEF]/5 border border-[#00AEEF]/20 rounded-xl p-6">
                   <div className="text-gray-600 leading-relaxed text-base space-y-2">
-                    <p><span className="font-medium">Data Controller:</span> Ooi Eng Wei</p>
+                    <p><span className="font-medium">Data Controller:</span> ITG Management Sdn. Bhd.</p>
                     <p>
                       <span className="font-medium">Email:</span>{' '}
-                      <a href="mailto:thinkbig@ooi.my" className="text-[#00AEEF] hover:underline">thinkbig@ooi.my</a>
+                      <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>
                     </p>
                     <p><span className="font-medium">Location:</span> Malaysia</p>
                     <p><span className="font-medium">Response time:</span> Within 14 business days</p>
