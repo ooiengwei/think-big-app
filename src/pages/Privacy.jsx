@@ -285,8 +285,25 @@ export default function Privacy() {
                     <li>Withdraw consent to data processing (this will require account deletion)</li>
                     <li>Lodge a complaint with the Department of Personal Data Protection (JPDP) Malaysia</li>
                   </ul>
+
+                  <div className="bg-[#00AEEF]/5 border border-[#00AEEF]/20 rounded-xl p-5 space-y-3">
+                    <p className="font-semibold text-[#0A0F1E]">How to correct your data:</p>
+                    <div className="space-y-2">
+                      <p>
+                        <span className="font-medium text-[#0A0F1E]">Registered email address —</span>{' '}
+                        Email us at{' '}
+                        <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>{' '}
+                        with subject <span className="font-mono text-sm bg-gray-100 px-1.5 py-0.5 rounded">&ldquo;Data Correction Request&rdquo;</span> and include your registered email and the correction needed. We will action within 14 business days.
+                      </p>
+                      <p>
+                        <span className="font-medium text-[#0A0F1E]">Assessment responses &amp; scores —</span>{' '}
+                        Your assessment data is self-generated. If you feel your answers no longer reflect your current state, simply retake the assessment. Your latest results will appear at the top of your Dashboard.
+                      </p>
+                    </div>
+                  </div>
+
                   <p>
-                    To exercise any of these rights, contact us at{' '}
+                    To exercise any other rights, contact us at{' '}
                     <a href="mailto:thinkbig.eco@gmail.com" className="text-[#00AEEF] hover:underline">thinkbig.eco@gmail.com</a>.
                   </p>
                 </div>
